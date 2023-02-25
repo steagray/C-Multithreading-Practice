@@ -1,0 +1,8 @@
+Author: Steven Gray
+
+How to Run:
+ The Makefile has 3 commands depending on which version of the program you'd like to run.
+ 
+ In order to run the version with no synchronization, you would type "make nosync".
+ In order to run the version with mutex locks, you would type "make locks".
+ In order to run the version with TAS locks, you would type "make tas".
