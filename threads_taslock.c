@@ -9,8 +9,10 @@ static volatile int counter;
 void *print_tid(void *tid){
 	do {} while (atomic_flag_test_and_set(&lock));
 	
-	counter = counter + *(int*)tid;
-	printf("Counter: %d\n", counter);
+	for(int i = 0; i < *(int *)tid; i++){
+		counter++;
+		printf("Counter: %d\n", counter);
+	}
 
 	atomic_flag_clear(&lock);
 	pthread_exit(NULL);
@@ -24,6 +26,12 @@ int main(int argc, char* argv[]){
 	
 	int thread_count = atoi(argv[2]);
 	int incby = atoi(argv[4]);
+
+	if(argv[3][1] == 'x'){
+		thread_count = atoi(argv[4]);
+		incby = atoi(argv[2]);
+	}
+
 	counter = 0;
 	pthread_t* threads = malloc(thread_count * sizeof(pthread_t));
 

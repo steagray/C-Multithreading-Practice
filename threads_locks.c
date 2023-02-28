@@ -8,9 +8,10 @@ int incr;
 void *print_tid(void *tid){
 	pthread_mutex_lock(&lock);
 
-	(*(int *)tid) = (*(int *)tid) + incr;
-	printf("Counter: %d\n", *(int *)tid);
-
+	for(int i = 0; i < incr; i++){
+		(*(int *)tid)++;
+		printf("Counter: %d\n", *(int *)tid);
+	}
 	pthread_mutex_unlock(&lock);
 
 	pthread_exit(NULL);
@@ -24,6 +25,12 @@ int main(int argc, char* argv[]){
 	
 	int thread_count = atoi(argv[2]);
 	incr = atoi(argv[4]);
+
+	if(argv[3][1] = 'x'){
+		thread_count = atoi(argv[4]);
+		incr = atoi(argv[2]);
+	}
+
 	int counter = 0;
 	pthread_t* threads = malloc(thread_count * sizeof(pthread_t));
 
