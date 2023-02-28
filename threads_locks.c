@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
 	int thread_count = atoi(argv[2]);
 	incr = atoi(argv[4]);
 
-	if(argv[3][1] = 'x'){
+	if(argv[3][1] == 'x'){
 		thread_count = atoi(argv[4]);
 		incr = atoi(argv[2]);
 	}
